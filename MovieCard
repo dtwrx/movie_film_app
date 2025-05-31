@@ -1,0 +1,77 @@
+package com.example.movie_film_app.ui.components
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.example.movie_film_app.model.Movie
+import androidx.compose.runtime.remember
+
+@Composable
+fun MovieCard(
+    movie: Movie,
+    onClick: () -> Unit = {},
+    onDelete: () -> Unit = {}
+) {
+    val context = LocalContext.current
+    val resId = remember(movie.posterResName) {
+        context.resources.getIdentifier(movie.posterResName, "drawable", context.packageName)
+    }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Row(modifier = Modifier.padding(12.dp)) {
+            Image(
+                painter = painterResource(id = resId),
+                contentDescription = movie.title,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(100.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(8.dp))
+            )
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = movie.title,
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                )
+                Text(text = "${movie.genre} | ${movie.country} | ${movie.year}", style = MaterialTheme.typography.bodySmall)
+                Text(text = "Возраст: ${movie.ageRating}", style = MaterialTheme.typography.bodySmall)
+                if (movie.actors.isNotEmpty()) {
+                    Text(text = "Актёры: ${movie.actors.joinToString()}", style = MaterialTheme.typography.bodySmall)
+                }
+            }
+
+            if (movie.isUserAdded) {
+                IconButton(onClick = { onDelete() }) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Удалить фильм",
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+        }
+    }
+}
+
