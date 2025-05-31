@@ -1,0 +1,8 @@
+package com.example.movie_film_app.model
+
+enum class SortType {
+    BY_TITLE,
+    BY_YEAR,
+    BY_GENRE,
+    BY_AGE_RATING
+}
