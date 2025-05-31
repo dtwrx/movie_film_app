@@ -1,0 +1,131 @@
+package com.example.movie_film_app.viewModel
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.movie_film_app.model.Movie
+import com.example.movie_film_app.model.MovieFilter
+import com.example.movie_film_app.model.SortType
+import com.google.gson.Gson
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.State
+import android.content.Context
+import android.util.Log
+import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
+
+class MovieViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val app = application
+
+    private val _allMovies = MutableStateFlow<List<Movie>>(listOf())
+    val allMovies: StateFlow<List<Movie>> = _allMovies
+
+    private val _filteredMovies = MutableStateFlow<List<Movie>>(listOf())
+    val filteredMovies: StateFlow<List<Movie>> = _filteredMovies
+
+    private val _filter = MutableStateFlow(MovieFilter())
+    val filter: StateFlow<MovieFilter> = _filter
+
+    private val _sortType = MutableStateFlow(SortType.BY_TITLE)
+    val sortType: StateFlow<SortType> = _sortType
+
+    private val _showAddForm = mutableStateOf(false)
+    val showAddForm: State<Boolean> = _showAddForm
+
+    private val _showFilters = mutableStateOf(false)
+    val showFilters: State<Boolean> = _showFilters
+
+    fun showAddMovieForm() {
+        _showAddForm.value = true
+    }
+
+    fun toggleFilterVisibility() {
+        _showFilters.value = !_showFilters.value
+    }
+
+    fun hideAddMovieForm() {
+        _showAddForm.value = false
+    }
+
+    init {
+        loadLocalMovies(app)
+    }
+
+    fun loadLocalMovies(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val jsonString = context.assets.open("popular_movies.json")
+                    .bufferedReader()
+                    .use { it.readText() }
+
+                val gson = Gson()
+                val type = object : TypeToken<List<Movie>>() {}.type
+                val movies = gson.fromJson<List<Movie>>(jsonString, type)
+
+                _allMovies.value = movies
+                applyFilters()
+
+            } catch (e: Exception) {
+                Log.e("MovieViewModel", "Ошибка загрузки JSON: ${e.message}")
+            }
+        }
+    }
+
+    fun removeMovie(movie: Movie) {
+        _allMovies.value = _allMovies.value.filter { it.id != movie.id || !it.isUserAdded }
+        applyFilters()
+    }
+
+    fun updateFilter(newFilter: MovieFilter) {
+        _filter.value = newFilter
+        applyFilters()
+    }
+
+    fun updateSortType(newSortType: SortType) {
+        _sortType.value = newSortType
+        applyFilters()
+    }
+
+    private fun applyFilters() {
+        val filter = _filter.value
+        val isFilterEmpty = filter.searchQuery.isEmpty()
+                && filter.selectedGenres.isEmpty()
+                && filter.selectedCountries.isEmpty()
+                && filter.selectedAgeRatings.isEmpty()
+                && filter.selectedYears.isEmpty()
+
+        _filteredMovies.value = if (isFilterEmpty) {
+            _allMovies.value.sortedWith(getSortComparator())
+        } else {
+            _allMovies.value.filter { movie ->
+                (filter.searchQuery.isBlank() || movie.title.contains(filter.searchQuery, ignoreCase = true)) &&
+                        (filter.selectedGenres.isEmpty() || movie.genre in filter.selectedGenres) &&
+                        (filter.selectedCountries.isEmpty() || movie.country in filter.selectedCountries) &&
+                        (filter.selectedAgeRatings.isEmpty() || filter.selectedAgeRatings.contains("${movie.ageRating}+")) &&
+                        (filter.selectedYears.isEmpty() || filter.selectedYears.any { movie.year in it })
+            }.sortedWith(getSortComparator())
+        }
+    }
+
+    private fun getSortComparator(): Comparator<Movie> {
+        return when (val sort = sortType.value) {
+            SortType.BY_TITLE -> compareBy { it.title }
+            SortType.BY_YEAR -> compareBy { it.year }
+            SortType.BY_GENRE -> compareBy { it.genre }
+            SortType.BY_AGE_RATING -> compareBy { it.ageRating }
+        }
+    }
+
+    fun clearFilters() {
+        _filter.value = MovieFilter()
+        applyFilters()
+    }
+
+    fun getMovieById(id: Int): Movie? {
+        return _allMovies.value.find { it.id == id }
+    }
+}
+
