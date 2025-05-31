@@ -1,0 +1,9 @@
+package com.example.movie_film_app.model
+
+data class MovieFilter(
+    val searchQuery: String = "",
+    val selectedGenres: List<String> = emptyList(),
+    val selectedCountries: List<String> = emptyList(),
+    val selectedAgeRatings: Set<String>  = emptySet(),
+    val selectedYears: List<IntRange> = emptyList()
+)
