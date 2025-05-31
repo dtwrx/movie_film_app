@@ -1,0 +1,268 @@
+[
+  {
+    "id": 1,
+    "title": "Побег из Шоушенка",
+    "genre": "Драма",
+    "country": "США",
+    "year": 1994,
+    "posterResName": "shawshank",
+    "ageRating": 16,
+    "actors": ["Тим Роббинс", "Морган Фриман", "Боб Гантон", "Уильям Сэдлер", "Гил Беллоуз"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0111161/"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Крёстный отец",
+    "genre": "Криминал",
+    "country": "США",
+    "year": 1972,
+    "posterResName": "godfather",
+    "ageRating": 18,
+    "actors": ["Марлон Брандо", "Аль Пачино", "Джеймс Каан", "Ричард Кастеллано", "Роберт Дюваль"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0068646/"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Тёмный рыцарь",
+    "genre": "Экшен",
+    "country": "США",
+    "year": 2008,
+    "posterResName": "dark_knight",
+    "ageRating": 16,
+    "actors": ["Кристиан Бейл", "Хит Леджер", "Аарон Экхарт", "Майкл Кейн", "Гари Олдман"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0468569/"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Крёстный отец 2",
+    "genre": "Криминал",
+    "country": "США",
+    "year": 1974,
+    "posterResName": "godfather_2",
+    "ageRating": 18,
+    "actors": ["Аль Пачино", "Роберт Дюваль", "Дайан Китон", "Роберт Де Ниро", "Джон Казале"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0071562/"
+    }
+  },
+  {
+    "id": 5,
+    "title": "12 разгневанных мужчин",
+    "genre": "Драма",
+    "country": "США",
+    "year": 1957,
+    "posterResName": "angry_men",
+    "ageRating": 12,
+    "actors": ["Генри Фонда", "Ли Дж. Кобб", "Мартин Балсам", "Джек Клугман", "Эд Бегли"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0050083/"
+    }
+  },
+  {
+    "id": 6,
+    "title": "Список Шиндлера",
+    "genre": "Исторический",
+    "country": "США",
+    "year": 1993,
+    "posterResName": "schindlers_list",
+    "ageRating": 18,
+    "actors": ["Лиам Нисон", "Бен Кингсли", "Рэйф Файнс", "Кэролайн Гудолл", "Эмбет Давидц"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0108052/"
+    }
+  },
+  {
+    "id": 7,
+    "title": "Властелин колец: Возвращение короля",
+    "genre": "Фэнтези",
+    "country": "Новая Зеландия",
+    "year": 2003,
+    "posterResName": "lotr_return",
+    "ageRating": 12,
+    "actors": ["Элайджа Вуд", "Вигго Мортенсен", "Йен Маккеллен", "Орландо Блум", "Шон Эстин"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0167260/"
+    }
+  },
+  {
+    "id": 8,
+    "title": "Криминальное чтиво",
+    "genre": "Криминал",
+    "country": "США",
+    "year": 1994,
+    "posterResName": "pulp_fiction",
+    "ageRating": 18,
+    "actors": ["Джон Траволта", "Сэмюэл Л. Джексон", "Ума Турман", "Брюс Уиллис", "Винг Рэймс"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0110912/"
+    }
+  },
+  {
+    "id": 9,
+    "title": "Властелин колец: Братство кольца",
+    "genre": "Фэнтези",
+    "country": "Новая Зеландия",
+    "year": 2001,
+    "posterResName": "lotr_fellowship",
+    "ageRating": 12,
+    "actors": ["Элайджа Вуд", "Йен Маккеллен", "Орландо Блум", "Вигго Мортенсен", "Шон Бин"],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0120737/"
+    }
+  },
+  {
+    "id": 10,
+    "title": "Хороший, плохой, злой",
+    "genre": "Вестерн",
+    "country": "Италия",
+    "year": 1966,
+    "posterResName": "good_bad_ugly",
+    "ageRating": 16,
+    "actors": [
+      "Клинт Иствуд",
+      "Эли Уоллах",
+      "Ли Ван Клиф",
+      "Марио Брэга",
+      "Альдо Джуффре"
+    ],
+    "links": {
+      "IMDb": "https://www.imdb.com/title/tt0060196/"
+    }
+  },
+    {
+      "id": 11,
+      "title": "Форрест Гамп",
+      "genre": "Драма",
+      "country": "США",
+      "year": 1994,
+      "posterResName": "forrest_gump",
+      "ageRating": 12,
+      "actors": ["Том Хэнкс", "Робин Райт", "Гэри Синиз", "Салли Филд", "Майкелти Уильямсон"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0109830/"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Бойцовский клуб",
+      "genre": "Драма",
+      "country": "США",
+      "year": 1999,
+      "posterResName": "fight_club",
+      "ageRating": 18,
+      "actors": ["Эдвард Нортон", "Брэд Питт", "Хелена Бонем Картер", "Мит Лоуф", "Джаред Лето"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0137523/"
+      }
+    },
+    {
+      "id": 13,
+      "title": "Начало",
+      "genre": "Фантастика",
+      "country": "США",
+      "year": 2010,
+      "posterResName": "inception",
+      "ageRating": 12,
+      "actors": ["Леонардо ДиКаприо", "Джозеф Гордон-Левитт", "Эллен Пейдж", "Том Харди", "Кен Ватанабе"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt1375666/"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Властелин колец: Две крепости",
+      "genre": "Фэнтези",
+      "country": "Новая Зеландия",
+      "year": 2002,
+      "posterResName": "lotr_towers",
+      "ageRating": 12,
+      "actors": ["Элайджа Вуд", "Йен Маккеллен", "Вигго Мортенсен", "Орландо Блум", "Шон Эстин"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0167261/"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Звёздные войны: Эпизод V",
+      "genre": "Фантастика",
+      "country": "США",
+      "year": 1980,
+      "posterResName": "star_wars_v",
+      "ageRating": 12,
+      "actors": ["Марк Хэмилл", "Харрисон Форд", "Кэрри Фишер", "Билли Ди Уильямс", "Фрэнк Оз"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0080684/"
+      }
+    },
+    {
+      "id": 16,
+      "title": "Матрица",
+      "genre": "Фантастика",
+      "country": "США",
+      "year": 1999,
+      "posterResName": "matrix",
+      "ageRating": 16,
+      "actors": ["Киану Ривз", "Лоренс Фишборн", "Кэрри-Энн Мосс", "Хьюго Уивинг", "Джо Пантолиано"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0133093/"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Славные парни",
+      "genre": "Криминал",
+      "country": "США",
+      "year": 1990,
+      "posterResName": "goodfellas",
+      "ageRating": 18,
+      "actors": ["Рэй Лиотта", "Роберт Де Ниро", "Джо Пеши", "Пол Сорвино", "Лоррейн Бракко"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0099685/"
+      }
+    },
+    {
+      "id": 18,
+      "title": "Однажды в Америке",
+      "genre": "Криминал",
+      "country": "США",
+      "year": 1984,
+      "posterResName": "once_america",
+      "ageRating": 18,
+      "actors": ["Роберт Де Ниро", "Джеймс Вудс", "Элизабет Макговерн", "Тьюсдей Уэлд", "Уильям Форсайт"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0087843/"
+      }
+    },
+    {
+      "id": 19,
+      "title": "Паразиты",
+      "genre": "Триллер",
+      "country": "Южная Корея",
+      "year": 2019,
+      "posterResName": "parasite",
+      "ageRating": 18,
+      "actors": ["Сон Кан-хо", "Чхве У-щик", "Пак Со-дам", "Чо Ё-джон", "Ли Сон-гюн"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt6751668/"
+      }
+    },
+    {
+      "id": 20,
+      "title": "Интерстеллар",
+      "genre": "Фантастика",
+      "country": "США",
+      "year": 2014,
+      "posterResName": "interstellar",
+      "ageRating": 12,
+      "actors": ["Мэттью Макконахи", "Энн Хэтэуэй", "Джессика Честейн", "Майкл Кейн", "Мэтт Дэймон"],
+      "links": {
+        "IMDb": "https://www.imdb.com/title/tt0816692/"
+      }
+    }
+  ]
