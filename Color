@@ -1,0 +1,10 @@
+package com.example.movie_film_app.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+val DarkBackground = Color(0xFF121212)
+val DarkSurface = Color(0xFF1E1E1E)
+val DarkPrimary = Color(0xFFE50914)
+val DarkAccent = Color(0xFFBB86FC)
+val TextWhite = Color(0xFFFFFFFF)
+val TextGray = Color(0xFFB3B3B3)
