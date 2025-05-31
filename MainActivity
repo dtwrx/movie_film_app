@@ -1,0 +1,29 @@
+package com.example.movie_film_app
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.movie_film_app.ui.navigation.AppNavigation
+import com.example.movie_film_app.ui.theme.MovieFilmAppTheme
+import com.example.movie_film_app.viewModel.MovieViewModel
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val navController = rememberNavController()
+            val viewModel: MovieViewModel = viewModel()
+
+            MovieFilmAppTheme {
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    AppNavigation(navController = navController, viewModel = viewModel)
+                }
+            }
+        }
+    }
+}
