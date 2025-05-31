@@ -1,0 +1,38 @@
+package com.example.movie_film_app.ui.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.movie_film_app.ui.screens.MainScreen
+import com.example.movie_film_app.ui.screens.MovieDetailScreen
+import com.example.movie_film_app.viewModel.MovieViewModel
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+
+@Composable
+fun AppNavigation(navController: NavHostController, viewModel: MovieViewModel) {
+    val context = LocalContext.current
+
+    NavHost(navController = navController, startDestination = "main") {
+        composable("main") {
+            MainScreen(viewModel = viewModel, onMovieClick = { movie ->
+                navController.navigate("detail/${movie.id}") {
+                    launchSingleTop = true
+                }
+            })
+        }
+
+        composable(
+            "detail/{movieId}",
+            arguments = listOf(navArgument("movieId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val movieId = backStackEntry.arguments?.getInt("movieId") ?: return@composable
+            val movie = viewModel.getMovieById(movieId)
+            movie?.let {
+                MovieDetailScreen(movie = it, onBack = { navController.navigateUp() })
+            }
+        }
+    }
+}
