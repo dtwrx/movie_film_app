@@ -1,0 +1,116 @@
+package com.example.movie_film_app.ui.components
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.movie_film_app.model.MovieFilter
+import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun FilterSection(
+    filter: MovieFilter,
+    onFilterChange: (MovieFilter) -> Unit,
+    onClose: () -> Unit,
+    genres: List<String>,
+    countries: List<String>,
+    yearRanges: List<IntRange>
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text("Фильтры", style = MaterialTheme.typography.titleMedium)
+
+        MultiSelectChips(
+            label = "Жанры",
+            options = genres,
+            selected = filter.selectedGenres,
+            onSelectionChange = { onFilterChange(filter.copy(selectedGenres = it)) }
+        )
+
+        MultiSelectChips(
+            label = "Страны",
+            options = countries,
+            selected = filter.selectedCountries,
+            onSelectionChange = { onFilterChange(filter.copy(selectedCountries = it)) }
+        )
+
+        MultiSelectChips(
+            label = "Возраст",
+            options = listOf("0+", "6+", "12+", "16+", "18+"),
+            selected = filter.selectedAgeRatings.toList(),
+            onSelectionChange = { newSelection ->
+                onFilterChange(filter.copy(selectedAgeRatings = newSelection.toSet()))
+            }
+        )
+
+        MultiSelectChips(
+            label = "Годы",
+            options = yearRanges.map { "${it.first}–${it.last}" },
+            selected = filter.selectedYears.map { "${it.first}–${it.last}" },
+            onSelectionChange = {
+                val ranges = it.mapNotNull { range ->
+                    val parts = range.split("–")
+                    if (parts.size == 2) parts[0].toIntOrNull()?.let { start ->
+                        parts[1].toIntOrNull()?.let { end -> start..end }
+                    } else null
+                }
+                onFilterChange(filter.copy(selectedYears = ranges))
+            }
+        )
+
+        Button(
+            onClick = onClose,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 8.dp)
+        ) {
+            Text("Закрыть фильтры")
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun MultiSelectChips(
+    label: String,
+    options: List<String>,
+    selected: List<String>,
+    onSelectionChange: (List<String>) -> Unit
+) {
+    Column {
+        Text(label, style = MaterialTheme.typography.labelLarge)
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            options.forEach { option ->
+                val selectedState = option in selected
+                FilterChip(
+                    selected = selectedState,
+                    onClick = {
+                        val newSelection = if (selectedState) {
+                            selected - option
+                        } else {
+                            selected + option
+                        }
+                        onSelectionChange(newSelection)
+                    },
+                    label = { Text(option) }
+                )
+            }
+        }
+    }
+}
